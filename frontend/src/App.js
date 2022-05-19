@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import "./App.css";
+import "./styles/App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
