@@ -1,5 +1,12 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
 
 export default function CardPage() {
-  return <div>CardPage</div>;
+  return (
+    <div>
+      <NavBar></NavBar>
+      <SideBar></SideBar>
+    </div>
+  );
 }
