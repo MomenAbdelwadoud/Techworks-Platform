@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../styles/LoginPage.module.css";
 
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -16,21 +15,21 @@ export default function LoginPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    let signin_data = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    console.log(signin_data);
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 6,
+          marginTop: 3,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 2,
         }}
       >
         <img

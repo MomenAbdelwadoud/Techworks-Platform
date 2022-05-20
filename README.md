@@ -12,11 +12,12 @@
 ## Project structure:
 
 - A front-end folder that contains React.js installed with MaterialUI and axios.
-- A back-end folder that contains django, django_rest_framework and a 'techworks_platform' app that has the main code.
+- A back-end folder that contains django, django_rest_framework and a 'api' app that has the main code.
 
 ## Usage:
 
 - Files are already set to run the project.
+- To see the frontend progress, on frontend dir start react app `yarn run start`
 - Use 'serializers.py' to transfer models into JSON.
 - Define the serializer and the query set on 'tech_works_platform'.
 - use axios on the front-end to call api request on `/api/techworks_platform`.
