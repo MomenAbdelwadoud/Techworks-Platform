@@ -1,0 +1,32 @@
+.logo {
+    width: min(23vw, 130px);
+    margin-bottom: 8vh;
+}
+.sidebar {
+    width: min(15vw, 300px);
+    height: 100vh;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 0px 50px 2px rgba(203, 207, 0, 0.2);
+    padding: 5px 0px 7px 0px;
+}
+.menu_items{
+    align-self: flex-end;
+    margin-bottom: 45vh;
+    width: 100%;
+}
+
+.current_item{
+    background-color: #ffd41d;
+    width: 3px;
+    height: 25px;
+    position: absolute;
+    right: 0;
+}
