@@ -3,7 +3,7 @@
     margin-bottom: 8vh;
 }
 .sidebar {
-    width: min(15vw, 300px);
+    width: min(27vw, 200px);
     height: 100vh;
     position: fixed;
     z-index: 2;

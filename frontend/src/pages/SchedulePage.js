@@ -13,15 +13,20 @@ import styles from "../styles/SchedulePage.module.css";
 
 export default function SchedulePage() {
   // Generate Order Data
-  function createData(name, date, type, category) {
-    return { name, date, type, category };
+  function createData(id, name, date, type, category) {
+    return { id, name, date, type, category };
   }
-
-  const rows = [
-    createData("Django", "16 May, 2022", "Session", "Programming"),
-    createData("SQL", "17 May, 2022", "Session", "Data Analytics"),
-    createData("Content writing", "20 May, 2022", "Session", "Session"),
-    createData("Django", "13 May, 2022", "Task", "Programming"),
+  const columns = [
+    { field: "name", headerName: "Name", width: 300 },
+    { field: "date", headerName: "Date", width: 200 },
+    { field: "type", headerName: "Type", width: 200 },
+    { field: "category", headerName: "Category", width: 200 },
+  ];
+  let rows = [
+    createData(1, "Django", "16 May, 2022", "Session", "Programming"),
+    createData(2, "SQL", "17 May, 2022", "Session", "Data Analytics"),
+    createData(3, "Content writing", "20 May, 2022", "Session", "Session"),
+    createData(4, "Django", "13 May, 2022", "Task", "Programming"),
   ];
   return (
     <>
@@ -30,26 +35,7 @@ export default function SchedulePage() {
       <main className="main">
         <Title title="Schedule" caption="Hello Momen"></Title>
         <div className={styles.table_container}>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Category</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.date}</TableCell>
-                  <TableCell>{row.type}</TableCell>
-                  <TableCell>{row.category}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          <DataGrid rows={rows} columns={columns} pageSize={5}></DataGrid>
         </div>
       </main>
     </>
