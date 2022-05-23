@@ -23,22 +23,22 @@ export default function SideBar() {
       <div className={styles.menu_items}>
       <ListItemButton>
       <ListItemIcon>
-        <PeopleAltIcon />
+        <PeopleAltIcon color='secondary.black'/>
       </ListItemIcon>
-      <ListItemText primary="PARTICIPANTS" />
+      <ListItemText primary="PARTICIPANTS"  />
       <span className={styles.current_item}></span>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <QrCodeIcon />
+        <QrCodeIcon color='secondary.black'/>
       </ListItemIcon>
-      <ListItemText primary="ATTENDANCE" />
+      <ListItemText primary="ATTENDANCE"  />
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
-        <EventNoteIcon />
+        <EventNoteIcon color='secondary.black'/>
       </ListItemIcon>
-      <ListItemText primary="SCHEDULE" />
+      <ListItemText primary="SCHEDULE"  />
     </ListItemButton>
       </div>
       <CopyRight></CopyRight>
