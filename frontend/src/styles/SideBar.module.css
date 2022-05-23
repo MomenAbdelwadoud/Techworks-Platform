@@ -23,10 +23,3 @@
     width: 100%;
 }
 
-.current_item{
-    background-color: #ffd41d;
-    width: 3px;
-    height: 25px;
-    position: absolute;
-    right: 0;
-}

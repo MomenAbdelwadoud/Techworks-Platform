@@ -6,7 +6,7 @@ const Title = ({title,caption}) => {
     return (
         <div style={{display:'flex',flexDirection:'column',alignItems:'start',marginBottom:'20px'}}>
             <Typography variant="h3" fontFamily={'roboto'} letterSpacing={2} color="primary">
-                {title}
+                {title.toUpperCase()}
             </Typography>
             <Typography variant="body2" fontFamily={'roboto'} fontWeight="light" letterSpacing={1.5} color="secondary.light" style={{marginTop:'-5px',marginLeft:'3px'}}>
             {caption}

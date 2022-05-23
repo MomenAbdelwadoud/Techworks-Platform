@@ -14,8 +14,8 @@ const NavBar = () => {
                     <Typography component="p" variant="caption" color="secondary.light">Account role</Typography>
                 </div>
                 <div className={styles.logout}>
-                    <LogoutIcon color='secondary.light'></LogoutIcon>
-                    <Typography component="p" variant="body2" color="secondary.light">Logout</Typography>
+                    <LogoutIcon color="secondary.light"></LogoutIcon>
+                    <Typography component="p" variant="caption" fontWeight='light' color="secondary.light">Logout</Typography>
                 </div>
             </div>
         </div>
