@@ -6,16 +6,15 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import React from 'react'
-import {useLocation} from 'react-router-dom'
 
-export default function ListItem({name, is_selected}) {
+export default function ListItem({name}) {
     const icons = {'participants':PeopleAltIcon,'attendance':QrCodeIcon,'schedule':EventNoteIcon}
     const Icon = icons[name];
     const title = name.toUpperCase()
-    const location = useLocation()
+    const location = window.location.pathname
   return (
     <a href={'/'+ name} style={{color:'inherit',textDecoration:'inherit'}}>
-     <ListItemButton selected={location.pathname.slice(1) === name} >
+     <ListItemButton selected={location.slice(1) === name} >
       <ListItemIcon>
         <Icon color='secondary.black'/>
       </ListItemIcon>

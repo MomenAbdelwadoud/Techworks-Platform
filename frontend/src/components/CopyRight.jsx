@@ -10,7 +10,7 @@ const CopyRight = () => {
             style={{
                 color: 'secondary.light',
                 fontFamily: 'poppins',
-                fontSize: 'min(0.5rem, 0.8vw)',
+                fontSize: 'min(0.55rem, 0.8vw)',
             }}
             >Powered by <strong style={{color:'secondary'}}>Group C - Batch 1</strong></Typography>
             <ElectricBoltIcon style={{'fontSize':"small"}} color='secondary.light'></ElectricBoltIcon>

@@ -30,8 +30,6 @@ export default function SchedulePage() {
   ];
   return (
     <>
-      <NavBar></NavBar>
-      <SideBar></SideBar>
       <main className="main">
         <Title title="Schedule" caption="Hello Momen"></Title>
         <div className={styles.table_container}>

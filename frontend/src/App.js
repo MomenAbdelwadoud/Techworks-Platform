@@ -12,6 +12,8 @@ import CardPage from "./pages/CardPage";
 import MaillistPage from "./pages/MaillistPage";
 import QrcodePage from "./pages/QrcodePage";
 import SchedulePage from "./pages/SchedulePage";
+import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 
 const theme = createTheme({
   palette: {
@@ -32,12 +34,20 @@ const theme = createTheme({
 });
 
 function App() {
-  let logged_in = false;
+  const logged_in = false;
+  // get current pathname
+  let current_path = window.location.pathname;
   // If user not logged in redirect to login page
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
+        {/* if current path is not signup or login show navbar and sidebar */}
+        {current_path !== "/signup" && current_path !== "/signin" && (
+          <>
+            <NavBar /> <SideBar />
+          </>
+        )}
         <Router>
           <Routes>
             {/* Route to each page file */}

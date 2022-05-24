@@ -7,6 +7,7 @@ import CopyRight from './CopyRight';
 import ListItem from './ListItem';
 
 export default function SideBar() {
+  const sidebarItems = ['participants','attendance','schedule']
   return (
     <div className={styles.sidebar}>
       <div>
@@ -18,9 +19,7 @@ export default function SideBar() {
       </div>
       <div className={styles.menu_items}>
           
-        <ListItem name='participants' is_selected={true}></ListItem>
-        <ListItem name='attendance'></ListItem>
-        <ListItem name='schedule'></ListItem>
+          {sidebarItems.map(item => <ListItem name={item}/>)}
       </div>
       <CopyRight></CopyRight>
     </div>

@@ -5,8 +5,7 @@ import SideBar from "../components/SideBar";
 export default function QrcodePage() {
   return (
     <div>
-      <NavBar></NavBar>
-      <SideBar></SideBar>
+        Scannn
     </div>
   );
 }
