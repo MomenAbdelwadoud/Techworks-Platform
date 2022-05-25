@@ -1,12 +1,13 @@
 import React from 'react'
-import Avatar from '@mui/material/Avatar';
 
+import styles from '../styles/AvatarImage.module.css';
 
-export default function AvatarImage() {
+export default function AvatarImage({for_account}) {
+  const style_class = for_account ? styles.account_avatar : styles.avatar
   return (
-    // <img src="#,#e4e4e4" alt="avatar" />
+    
     <>
-    <Avatar></Avatar>
+      <img src={require('../assets/avatar test.jpg')} alt="avatar" className={style_class}/>
     </>
   )
 }

@@ -43,11 +43,13 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         {/* if current path is not signup or login show navbar and sidebar */}
-        {current_path !== "/signup" && current_path !== "/signin" && (
-          <>
-            <NavBar /> <SideBar />
-          </>
-        )}
+        {current_path !== "/signup" &&
+          current_path !== "/signin" &&
+          current_path !== "/" && (
+            <>
+              <NavBar /> <SideBar />
+            </>
+          )}
         <Router>
           <Routes>
             {/* Route to each page file */}

@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <div className={styles.navbar}>
             <div className={styles.account}>
-                <AvatarImage></AvatarImage>
+                <AvatarImage for_account></AvatarImage>
                 <div className={styles.account_info}>
                     <Typography style={{cursor:'pointer'}} component="p" variant='body1' color="primary">Account name</Typography>
                     <Typography component="p" variant="caption" color="secondary.light">Account role</Typography>
