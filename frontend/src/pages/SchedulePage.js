@@ -1,12 +1,6 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import SideBar from "../components/SideBar";
+
 import Title from "../components/Title";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import { DataGrid } from "@mui/x-data-grid";
 
 import styles from "../styles/SchedulePage.module.css";
@@ -31,6 +25,7 @@ export default function SchedulePage() {
   return (
     <>
       <main className="main">
+        {/* TODO: Add button */}
         <Title title="Schedule" caption="Hello Momen"></Title>
         <div className={styles.table_container}>
           <DataGrid rows={rows} columns={columns} pageSize={5}></DataGrid>

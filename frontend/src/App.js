@@ -10,7 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import CardPage from "./pages/CardPage";
 import MaillistPage from "./pages/MaillistPage";
-import QrcodePage from "./pages/QrcodePage";
+import AttendancePage from "./pages/AttendancePage";
 import SchedulePage from "./pages/SchedulePage";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
@@ -73,7 +73,7 @@ function App() {
             ></Route>
             <Route
               path="/attendance"
-              element={<QrcodePage></QrcodePage>}
+              element={<AttendancePage></AttendancePage>}
             ></Route>
             <Route
               path="/schedule"
