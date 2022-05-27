@@ -1,7 +1,6 @@
 import React from 'react';
 import Typography from "@mui/material/Typography";
 
-
 const Title = ({title,caption}) => {
     return (
         <div style={{display:'flex',flexDirection:'column',alignItems:'start',marginBottom:'20px'}}>

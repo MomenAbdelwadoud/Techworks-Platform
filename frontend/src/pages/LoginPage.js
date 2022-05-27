@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/LoginPage.module.css";
+import { useNavigate } from "react-router-dom";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -20,6 +22,7 @@ export default function LoginPage() {
       password: data.get("password"),
     };
     console.log(signin_data);
+    navigate("/participants", { replace: false });
   };
 
   return (

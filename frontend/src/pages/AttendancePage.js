@@ -3,19 +3,44 @@ import { DataGrid } from "@mui/x-data-grid";
 import Title from "../components/Title";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
+import Button from "@mui/material/Button";
+import Add from "@mui/icons-material/Add";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import QrReader from "react-qr-scanner";
+
 import styles from "../styles/AttendancePage.module.css";
 
-export default function QrcodePage() {
+export default function AttendancePage() {
+  const [result, setResult] = useState("");
   const [showAll, setShowAll] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const openAddWindow = () => {
+    setOpen(true);
+  };
+  const closeAddWindow = () => {
+    setOpen(false);
+  };
   const handleChange = (event) => {
     setShowAll(event.target.checked);
+  };
+
+  const handleScan = (data) => {
+    if (data) {
+      setResult(data);
+    }
+    console.log("please do something");
+  };
+  const handleError = (err) => {
+    console.error(err);
   };
 
   // TODO: Apply colors to the rows
   // const attended = <span className={styles.yes}></span>;
   // const didnt_attend = <span className={styles.no}></span>;
-
   const participants = [
     { id: 1, name: "Momen", col1: "Yes", col2: "No" },
     { id: 2, name: "Hamdi" },
@@ -54,10 +79,25 @@ export default function QrcodePage() {
 
   return (
     <div className="main">
-      <Title
-        title="Take Attendance"
-        caption="Attendance is an easier process now ;)"
-      ></Title>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Title
+          title="Take Attendance"
+          caption="Attendance is an easier process now ;)"
+        ></Title>
+        <Button
+          variant="contained"
+          onClick={openAddWindow}
+          endIcon={<Add></Add>}
+        >
+          Add
+        </Button>
+      </div>
       <FormControlLabel
         control={
           <Switch color="primary" checked={showAll} onChange={handleChange} />
@@ -72,6 +112,32 @@ export default function QrcodePage() {
           }
           pageSize={10}
         ></DataGrid>
+        <Modal
+          open={open}
+          onClose={closeAddWindow}
+          aria-labelledby="modal-modal-scan"
+          aria-describedby="modal-modal-scan"
+        >
+          <Box className={styles.modal}>
+            <Typography variant="h6">Scan QR Code</Typography>
+            <QrReader
+              delay={500}
+              className={styles.qrcode_frame}
+              facingMode="rear"
+              onError={handleScan}
+              onScan={handleError}
+            />
+            <div className={styles.manual}>
+              <Typography variant="caption" color="secondary.light">
+                Or add manually by ID {result}
+              </Typography>
+              <TextField id="standard-basic" label="ID" variant="standard" />
+              <Button size="small" variant="contained">
+                Add
+              </Button>
+            </div>
+          </Box>
+        </Modal>
       </div>
     </div>
   );
