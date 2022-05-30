@@ -9,33 +9,22 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import QrReader from "react-qr-scanner";
 
 import styles from "../styles/AttendancePage.module.css";
+import Qrcode from "../components/Qrcode";
 
 export default function AttendancePage() {
-  const [result, setResult] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [open, setOpen] = useState(false);
 
   const openAddWindow = () => {
     setOpen(true);
   };
-  const closeAddWindow = () => {
+  const closeAddWindow = async () => {
     setOpen(false);
   };
   const handleChange = (event) => {
     setShowAll(event.target.checked);
-  };
-
-  const handleScan = (data) => {
-    if (data) {
-      setResult(data);
-    }
-    console.log("please do something");
-  };
-  const handleError = (err) => {
-    console.error(err);
   };
 
   // TODO: Apply colors to the rows
@@ -120,16 +109,10 @@ export default function AttendancePage() {
         >
           <Box className={styles.modal}>
             <Typography variant="h6">Scan QR Code</Typography>
-            <QrReader
-              delay={500}
-              className={styles.qrcode_frame}
-              facingMode="rear"
-              onError={handleScan}
-              onScan={handleError}
-            />
+            <Qrcode></Qrcode>
             <div className={styles.manual}>
               <Typography variant="caption" color="secondary.light">
-                Or add manually by ID {result}
+                Or add manually by ID
               </Typography>
               <TextField id="standard-basic" label="ID" variant="standard" />
               <Button size="small" variant="contained">
