@@ -12,6 +12,10 @@
     align-items: center;
     padding: 5px;
     padding-top: 40px;
+    cursor: pointer;
+}
+.card:hover {
+    transform: translateX(-5px);
 }
 
 .card_details{

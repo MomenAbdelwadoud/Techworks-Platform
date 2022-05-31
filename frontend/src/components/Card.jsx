@@ -2,11 +2,17 @@ import React from 'react';
 import styles from '../styles/Card.module.css';
 import AvatarImage from './AvatarImage';
 import { Typography } from '@mui/material';
+import Profile from './Profile';
 
 const Card = ({name}) => {
     let group = 'Group C';
+    const [open, setOpen] = useState(false)
+    const handleOpen = () =>{
+        setOpen(true)
+    }
     return (
-        <div className={styles.card}>
+        <>
+        <div className={styles.card} onClick={handleOpen}>
             <AvatarImage className={styles.avatar}></AvatarImage>
             <Typography fontFamily='roboto' component='h3' color='primary' variant={'title1'} letterSpacing={1.5}>{name.toUpperCase()}</Typography>
             <Typography fontFamily='roboto' component='p' variant='caption' color='secondary.light'>{group}</Typography>
@@ -16,6 +22,8 @@ const Card = ({name}) => {
                 <Typography fontFamily='roboto' component='p' variant='body2' fontWeight={'bold'} color='secondary'>10</Typography>
             </div>
         </div>
+        <Profile is_open={open}></Profile>
+        </>
     );
 }
 

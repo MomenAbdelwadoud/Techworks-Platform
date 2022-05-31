@@ -20,7 +20,7 @@ export default function AttendancePage() {
   const openAddWindow = () => {
     setOpen(true);
   };
-  const closeAddWindow = async () => {
+  const closeAddWindow = () => {
     setOpen(false);
   };
   const handleChange = (event) => {
