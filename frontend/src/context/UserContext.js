@@ -1,6 +1,6 @@
 import React,{createContext,useState} from 'react'
 
-export const UserContext = createContext({signedIn:true,userType:'',setSignedIn:()=>{},setUserType:()=>{}})
+export const UserContext = createContext({signedIn:true,userType:'',setSignedIn:(val)=>{},setUserType:(val)=>{}})
 
 export default function ContextWrapper(props){
 const [signedIn, setSignedIn] = useState(true)
