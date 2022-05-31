@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import React,{usecontext} from 'react'
+import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,7 +16,7 @@ import SchedulePage from "./pages/SchedulePage";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 
-import ContextWrapper from './context/UserContext'
+import ContextWrapper from "./context/UserContext";
 import { UserContext } from "./context/UserContext";
 
 const theme = createTheme({
@@ -38,7 +38,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const User = usecontext(UserContext) 
+  const User = useContext(UserContext);
   const logged_in = User.signedIn;
   // get current pathname
   let current_path = window.location.pathname;
@@ -46,51 +46,57 @@ function App() {
 
   return (
     <ContextWrapper>
-
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        {/* if current path is not signup or login show navbar and sidebar */}
-        {current_path !== "/signup" &&
-          current_path !== "/signin" &&
-          current_path !== "/" && (
-            <>
-              <NavBar /> <SideBar />
-            </>
-          )}
-        <Router>
-          <Routes>
-            {/* Route to each page file */}
-            <Route
-              path="/"
-              element={
-                logged_in ? (
-                  <Navigate to="/participants" replace />
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          {/* if current path is not signup or login show navbar and sidebar */}
+          {current_path !== "/signup" &&
+            current_path !== "/signin" &&
+            current_path !== "/" && (
+              <>
+                <NavBar /> <SideBar />
+              </>
+            )}
+          <Router>
+            <Routes>
+              {/* Route to each page file */}
+              <Route
+                path="/"
+                element={
+                  logged_in ? (
+                    <Navigate to="/participants" replace />
                   ) : (
                     <Navigate to="/signin" replace />
-                    )
-                  }
-                  exact
-                  ></Route>
-            <Route path="/signin" element={<LoginPage></LoginPage>}></Route>
-            <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
-            <Route path="/participants" element={<CardPage></CardPage>}></Route>
-            <Route
-              path="/maillist"
-              element={<MaillistPage></MaillistPage>}
+                  )
+                }
+                exact
               ></Route>
-            <Route
-              path="/attendance"
-              element={<AttendancePage></AttendancePage>}
+              <Route path="/signin" element={<LoginPage></LoginPage>}></Route>
+              <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
+              <Route
+                path="/participants"
+                element={<CardPage></CardPage>}
               ></Route>
-            <Route
-              path="/schedule"
-              element={<SchedulePage></SchedulePage>}
+              <Route
+                path="/maillist"
+                element={<MaillistPage></MaillistPage>}
               ></Route>
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </div>
-  </ContextWrapper>
+              <Route
+                path="/attendance"
+                element={<AttendancePage></AttendancePage>}
+              ></Route>
+              <Route
+                path="/schedule"
+                element={<SchedulePage></SchedulePage>}
+              ></Route>
+              <Route
+                path="/emailing"
+                element={<MaillistPage></MaillistPage>}
+              ></Route>
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </div>
+    </ContextWrapper>
   );
 }
 

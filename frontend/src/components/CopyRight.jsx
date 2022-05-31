@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 
 const CopyRight = () => {
     return (
-        <div style={{display:'flex',alignContent:'center',gap:'3px'}}>
+        <div style={{display:'flex',alignContent:'center',gap:'3px',position:'absolute',bottom:'20px'}}>
             <Typography component="p" color="secondary.light"
             style={{
                 color: 'secondary.light',

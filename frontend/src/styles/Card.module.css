@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 .card:hover {
-    transform: translateX(-5px);
+    transform: translateY(-5px);
 }
 
 .card_details{

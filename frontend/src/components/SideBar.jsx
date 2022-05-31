@@ -7,7 +7,7 @@ import CopyRight from './CopyRight';
 import ListItem from './ListItem';
 
 export default function SideBar() {
-  const sidebarItems = ['participants','attendance','schedule']
+  const sidebarItems = ['participants','attendance','schedule','emailing']
   return (
     <div className={styles.sidebar}>
       <div>

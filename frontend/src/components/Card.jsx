@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styles from '../styles/Card.module.css';
 import AvatarImage from './AvatarImage';
 import { Typography } from '@mui/material';
