@@ -1,5 +1,6 @@
 import "./styles/App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React,{usecontext} from 'react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -14,6 +15,9 @@ import AttendancePage from "./pages/AttendancePage";
 import SchedulePage from "./pages/SchedulePage";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
+
+import ContextWrapper from './context/UserContext'
+import { UserContext } from "./context/UserContext";
 
 const theme = createTheme({
   palette: {
@@ -34,12 +38,15 @@ const theme = createTheme({
 });
 
 function App() {
-  const logged_in = false;
+  const User = usecontext(UserContext) 
+  const logged_in = User.signedIn;
   // get current pathname
   let current_path = window.location.pathname;
   // If user not logged in redirect to login page
 
   return (
+    <ContextWrapper>
+
     <div className="App">
       <ThemeProvider theme={theme}>
         {/* if current path is not signup or login show navbar and sidebar */}
@@ -58,31 +65,32 @@ function App() {
               element={
                 logged_in ? (
                   <Navigate to="/participants" replace />
-                ) : (
-                  <Navigate to="/signin" replace />
-                )
-              }
-              exact
-            ></Route>
+                  ) : (
+                    <Navigate to="/signin" replace />
+                    )
+                  }
+                  exact
+                  ></Route>
             <Route path="/signin" element={<LoginPage></LoginPage>}></Route>
             <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
             <Route path="/participants" element={<CardPage></CardPage>}></Route>
             <Route
               path="/maillist"
               element={<MaillistPage></MaillistPage>}
-            ></Route>
+              ></Route>
             <Route
               path="/attendance"
               element={<AttendancePage></AttendancePage>}
-            ></Route>
+              ></Route>
             <Route
               path="/schedule"
               element={<SchedulePage></SchedulePage>}
-            ></Route>
+              ></Route>
           </Routes>
         </Router>
       </ThemeProvider>
     </div>
+  </ContextWrapper>
   );
 }
 
