@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 
-import React from "react";
+
 
 let ParticipantsContext = createContext({ list: [] });
 
