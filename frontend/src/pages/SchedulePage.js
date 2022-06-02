@@ -1,35 +1,49 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
 import Title from "../components/Title";
 import { DataGrid } from "@mui/x-data-grid";
 
 import styles from "../styles/SchedulePage.module.css";
+import Lecture from "../components/Lecture";
+import { ScheduleContext } from "../context/ScheduleContext";
 
 export default function SchedulePage() {
-  // Generate Order Data
-  function createData(id, name, date, type, category) {
-    return { id, name, date, type, category };
-  }
+  const [selection, setSelection] = useState([]);
+  let schedule_context = useContext(ScheduleContext);
+  let rows = schedule_context.list;
+
   const columns = [
     { field: "name", headerName: "Name", width: 300 },
     { field: "date", headerName: "Date", width: 200 },
     { field: "type", headerName: "Type", width: 200 },
     { field: "category", headerName: "Category", width: 200 },
   ];
-  let rows = [
-    createData(1, "Django", "16 May, 2022", "Session", "Programming"),
-    createData(2, "SQL", "17 May, 2022", "Session", "Data Analytics"),
-    createData(3, "Content writing", "20 May, 2022", "Session", "Session"),
-    createData(4, "Django", "13 May, 2022", "Task", "Programming"),
-  ];
+
+  const [selectedRow, setSelectedRow] = useState({});
+
   return (
     <>
       <main className="main">
         {/* TODO: Add button */}
         <Title title="Schedule" caption="Hello Momen"></Title>
         <div className={styles.table_container}>
-          <DataGrid rows={rows} columns={columns} pageSize={5}></DataGrid>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={5}
+            isRowSelectable={(params) => params.row.type !== "Task"}
+            selectionModel={selection}
+            onSelectionModelChange={(newSelectionModel) => {
+              setSelection(newSelectionModel);
+              console.log(newSelectionModel);
+            }}
+          ></DataGrid>
         </div>
+        <Lecture
+          name={selectedRow.name}
+          time={selectedRow.time}
+          data={selectedRow.data}
+        ></Lecture>
       </main>
     </>
   );

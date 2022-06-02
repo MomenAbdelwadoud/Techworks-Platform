@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 
 import styles from "../styles/AttendancePage.module.css";
 import Qrcode from "../components/Qrcode";
@@ -16,12 +17,30 @@ import Qrcode from "../components/Qrcode";
 export default function AttendancePage() {
   const [showAll, setShowAll] = useState(false);
   const [open, setOpen] = useState(false);
+  const [resultAlert, setResultAlert] = useState(false);
+  const [id, setId] = useState("");
+  const [idField, setIdField] = useState("");
 
+  const showResult = (result) => {
+    add(result);
+    setResultAlert(true);
+    setTimeout(() => {
+      setResultAlert(false);
+    }, 3000);
+  };
+  const onSubmit = () => {
+    showResult(idField);
+    setIdField("");
+  };
+  const add = (id) => {
+    setId(id);
+  };
   const openAddWindow = () => {
     setOpen(true);
   };
   const closeAddWindow = () => {
     setOpen(false);
+    window.location.reload();
   };
   const handleChange = (event) => {
     setShowAll(event.target.checked);
@@ -109,18 +128,38 @@ export default function AttendancePage() {
         >
           <Box className={styles.modal}>
             <Typography variant="h6">Scan QR Code</Typography>
-            <Qrcode></Qrcode>
+            <Qrcode open={open} showResult={showResult}></Qrcode>
             <div className={styles.manual}>
               <Typography variant="caption" color="secondary.light">
                 Or add manually by ID
               </Typography>
-              <TextField id="standard-basic" label="ID" variant="standard" />
-              <Button size="small" variant="contained">
+              <TextField
+                id="standard-basic"
+                label="ID"
+                variant="standard"
+                value={idField}
+                onChange={(e) => setIdField(e.target.value)}
+              />
+              <Button size="small" variant="contained" onClick={onSubmit}>
                 Add
               </Button>
             </div>
           </Box>
         </Modal>
+        {resultAlert ? (
+          <Alert
+            style={{
+              position: "fixed",
+              bottom: "10px",
+              left: "10px",
+              zIndex: "999999",
+            }}
+            onClose={() => {}}
+            severity="success"
+          >
+            Added {id} to the list
+          </Alert>
+        ) : null}
       </div>
     </div>
   );

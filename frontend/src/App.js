@@ -18,6 +18,8 @@ import SideBar from "./components/SideBar";
 
 import ContextWrapper from "./context/UserContext";
 import { UserContext } from "./context/UserContext";
+import ScheduleContextWrapper from "./context/ScheduleContext";
+import ParticipantsContextWrapper from "./context/ParticipantsContext";
 
 const theme = createTheme({
   palette: {
@@ -46,56 +48,66 @@ function App() {
 
   return (
     <ContextWrapper>
-      <div className="App">
-        <ThemeProvider theme={theme}>
-          {/* if current path is not signup or login show navbar and sidebar */}
-          {current_path !== "/signup" &&
-            current_path !== "/signin" &&
-            current_path !== "/" && (
-              <>
-                <NavBar /> <SideBar />
-              </>
-            )}
-          <Router>
-            <Routes>
-              {/* Route to each page file */}
-              <Route
-                path="/"
-                element={
-                  logged_in ? (
-                    <Navigate to="/participants" replace />
-                  ) : (
-                    <Navigate to="/signin" replace />
-                  )
-                }
-                exact
-              ></Route>
-              <Route path="/signin" element={<LoginPage></LoginPage>}></Route>
-              <Route path="/signup" element={<SignupPage></SignupPage>}></Route>
-              <Route
-                path="/participants"
-                element={<CardPage></CardPage>}
-              ></Route>
-              <Route
-                path="/maillist"
-                element={<MaillistPage></MaillistPage>}
-              ></Route>
-              <Route
-                path="/attendance"
-                element={<AttendancePage></AttendancePage>}
-              ></Route>
-              <Route
-                path="/schedule"
-                element={<SchedulePage></SchedulePage>}
-              ></Route>
-              <Route
-                path="/emailing"
-                element={<MaillistPage></MaillistPage>}
-              ></Route>
-            </Routes>
-          </Router>
-        </ThemeProvider>
-      </div>
+      <ScheduleContextWrapper>
+        <ParticipantsContextWrapper>
+          <div className="App">
+            <ThemeProvider theme={theme}>
+              {/* if current path is not signup or login show navbar and sidebar */}
+              {current_path !== "/signup" &&
+                current_path !== "/signin" &&
+                current_path !== "/" && (
+                  <>
+                    <NavBar /> <SideBar />
+                  </>
+                )}
+              <Router>
+                <Routes>
+                  {/* Route to each page file */}
+                  <Route
+                    path="/"
+                    element={
+                      logged_in ? (
+                        <Navigate to="/participants" />
+                      ) : (
+                        <Navigate to="/signin" />
+                      )
+                    }
+                    exact
+                  ></Route>
+                  <Route
+                    path="/signin"
+                    element={<LoginPage></LoginPage>}
+                  ></Route>
+                  <Route
+                    path="/signup"
+                    element={<SignupPage></SignupPage>}
+                  ></Route>
+                  <Route
+                    path="/participants"
+                    element={<CardPage></CardPage>}
+                  ></Route>
+                  <Route
+                    path="/maillist"
+                    element={<MaillistPage></MaillistPage>}
+                  ></Route>
+                  <Route
+                    path="/attendance"
+                    element={<AttendancePage></AttendancePage>}
+                  ></Route>
+                  <Route
+                    path="/schedule"
+                    element={<SchedulePage></SchedulePage>}
+                  ></Route>
+                  <Route
+                    path="/emailing"
+                    element={<MaillistPage></MaillistPage>}
+                  ></Route>
+                </Routes>
+              </Router>
+            </ThemeProvider>
+          </div>
+        </ParticipantsContextWrapper>
+      </ScheduleContextWrapper>
     </ContextWrapper>
   );
 }

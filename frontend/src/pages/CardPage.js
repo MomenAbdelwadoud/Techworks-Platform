@@ -1,27 +1,21 @@
 import React from "react";
 import Card from "../components/Card";
 import Title from "../components/Title";
+import { ParticipantsContext } from "../context/ParticipantsContext";
 
 import Grid from "@mui/material/Grid";
 
 export default function CardPage() {
-  let card_list = [
-    "Momen",
-    "Hamdi",
-    "Setay",
-    "Sara",
-    "Nihal",
-    "someone",
-    "someone",
-  ];
+  const participants = React.useContext(ParticipantsContext);
+  const card_list = participants.list;
   return (
     <div className="main">
       <Title title="All Participants" caption="Welcome back :)"></Title>
       <Grid container spacing={5} style={{ marginTop: "5px" }}>
-        {card_list.map((card) => {
+        {card_list.slice(3).map((card) => {
           return (
             <Grid item xs={3}>
-              <Card name={card}></Card>
+              <Card data={card}></Card>
             </Grid>
           );
         })}
