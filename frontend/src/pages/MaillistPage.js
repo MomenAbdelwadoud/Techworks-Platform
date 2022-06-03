@@ -6,10 +6,15 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
+import Alert from "@mui/material/Alert";
 
 import styles from "../styles/MaillistPage.module.css";
 
+import emailjs from "@emailjs/browser";
+
 export default function MaillistPage() {
+  const [ok, setOk] = useState(false);
+  const [error, setError] = useState(false);
   const [recipients, setRecipients] = useState("participants");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -17,13 +22,56 @@ export default function MaillistPage() {
   const handleChange = (e) => {
     setRecipients(e.target.value);
   };
+  // All emails
+  const students = ["momenwadoudg@gmail.com", ""];
+  const mentors = [""];
+  const all = students.concat(mentors);
+
+  // show alert for 2 seconds
+  const showOk = () => {
+    setOk(true);
+    setTimeout(() => {
+      setOk(false);
+    }, 2000);
+  };
+  const showError = () => {
+    setError(true);
+    setTimeout(() => {
+      setError(false);
+    }, 2000);
+  };
+
   const onSend = () => {
-    const email_data = {
-      recipients,
-      title,
-      body,
-    };
-    console.log(email_data);
+    const recipients_list =
+      recipients === "all"
+        ? all
+        : recipients === "participants"
+        ? students
+        : recipients === "mentors"
+        ? mentors
+        : "";
+
+    emailjs
+      .send(
+        "service_4k60k4g",
+        "template_gc3qtua",
+        {
+          subject: title,
+          message: body,
+          to_emails: recipients_list,
+        },
+        "CAs9QHax00KzjGmSS"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          showOk();
+        },
+        (err) => {
+          console.log("FAILED...", err);
+          showError();
+        }
+      );
     setTitle("");
     setBody("");
   };
@@ -36,6 +84,15 @@ export default function MaillistPage() {
         title="Send Emails to users"
         caption="Send to Participants, mentors or all"
       ></Title>
+      <Typography
+        variant="body2"
+        fontFamily={"roboto"}
+        letterSpacing={1.2}
+        color="secondary"
+        style={{ marginBottom: "5px" }}
+      >
+        Title:
+      </Typography>
       <TextField
         onChange={(event) => setTitle(event.target.value)}
         required
@@ -43,6 +100,15 @@ export default function MaillistPage() {
         variant="outlined"
         value={title}
       ></TextField>
+      <Typography
+        variant="body2"
+        fontFamily={"roboto"}
+        letterSpacing={1.2}
+        color="secondary"
+        style={{ marginBottom: "5px" }}
+      >
+        Body:
+      </Typography>
       <TextField
         onChange={(event) => setBody(event.target.value)}
         multiline
@@ -77,6 +143,34 @@ export default function MaillistPage() {
           Send
         </Button>
       </div>
+      {ok ? (
+        <Alert
+          style={{
+            position: "fixed",
+            bottom: "10px",
+            left: "10px",
+            zIndex: "999999",
+          }}
+          onClose={() => {}}
+          severity="success"
+        >
+          Email sent successfully
+        </Alert>
+      ) : null}
+      {error ? (
+        <Alert
+          style={{
+            position: "fixed",
+            bottom: "10px",
+            left: "10px",
+            zIndex: "999999",
+          }}
+          onClose={() => {}}
+          severity="error"
+        >
+          An error occurred
+        </Alert>
+      ) : null}
     </div>
   );
 }
