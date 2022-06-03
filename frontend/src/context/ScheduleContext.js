@@ -8,14 +8,42 @@ export const ScheduleContext = createContext({
 export default function ScheduleContextWrapper(props) {
   const [today, setToday] = useState(false);
   // Generate Order Data
-  function createData(id, name, date, type, category) {
-    return { id, name, date, type, category };
+  function createData(id, name, time, category, notes, task) {
+    return { id, name, time, category, notes, task };
   }
   let rows = [
-    createData(1, "Django", "16 May, 2022", "Session", "Programming"),
-    createData(2, "SQL", "17 May, 2022", "Session", "Data Analytics"),
-    createData(3, "Content writing", "20 May, 2022", "Session", "Session"),
-    createData(4, "Django", "13 May, 2022", "Task", "Programming"),
+    createData(
+      1,
+      "Django",
+      "16 May, 2022",
+      "Programming",
+      "some notes",
+      "FizzBuzz"
+    ),
+    createData(
+      2,
+      "SQL",
+      "17 May, 2022",
+      "Data Analytics",
+      "some notes",
+      "group by"
+    ),
+    createData(
+      3,
+      "Content writing",
+      "20 May, 2022",
+      "Professional development",
+      "some notes",
+      ""
+    ),
+    createData(
+      4,
+      "Django",
+      "13 May, 2022",
+      "Programming",
+      "some notes",
+      "airport"
+    ),
   ];
   let context = {
     today: today,

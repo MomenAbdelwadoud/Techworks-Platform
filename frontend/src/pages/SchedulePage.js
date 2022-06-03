@@ -8,18 +8,17 @@ import Lecture from "../components/Lecture";
 import { ScheduleContext } from "../context/ScheduleContext";
 
 export default function SchedulePage() {
-  const [selection, setSelection] = useState([]);
+  const [selection, setSelection] = useState();
+  const [show, setShow] = useState(false);
   let schedule_context = useContext(ScheduleContext);
   let rows = schedule_context.list;
 
   const columns = [
-    { field: "name", headerName: "Name", width: 300 },
-    { field: "date", headerName: "Date", width: 200 },
-    { field: "type", headerName: "Type", width: 200 },
-    { field: "category", headerName: "Category", width: 200 },
+    { field: "name", headerName: "Name", width: 400 },
+    { field: "time", headerName: "Date", width: 300 },
+    { field: "category", headerName: "Category", width: 300 },
+    { field: "task", headerName: "Task", width: 300 },
   ];
-
-  const [selectedRow, setSelectedRow] = useState({});
 
   return (
     <>
@@ -31,19 +30,24 @@ export default function SchedulePage() {
             rows={rows}
             columns={columns}
             pageSize={5}
-            isRowSelectable={(params) => params.row.type !== "Task"}
             selectionModel={selection}
             onSelectionModelChange={(newSelectionModel) => {
               setSelection(newSelectionModel);
               console.log(newSelectionModel);
+              setShow(true);
             }}
           ></DataGrid>
         </div>
-        <Lecture
-          name={selectedRow.name}
-          time={selectedRow.time}
-          data={selectedRow.data}
-        ></Lecture>
+        {selection !== "" ? (
+          <Lecture
+            name={selection.name}
+            time={selection.time}
+            notes={selection.notes}
+            category={selection.category}
+            task={selection.task}
+            show={show}
+          ></Lecture>
+        ) : null}
       </main>
     </>
   );

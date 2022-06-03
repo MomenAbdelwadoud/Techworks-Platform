@@ -1,12 +1,9 @@
 import React, { createContext, useState } from "react";
 
-import React from "react";
-
-let ParticipantsContext = createContext({ list: [] });
+export const ParticipantsContext = createContext({ list: [] });
 
 export default function ParticipantsContextWrapper(props) {
-  const [list, setList] = useState([]);
-  list = [
+  const [list, setList] = useState([
     {
       name: "Momen Abdelwadoud",
       group: "C",
@@ -35,7 +32,7 @@ export default function ParticipantsContextWrapper(props) {
       overall_score: 100,
       attendance_percentage: 86,
     },
-  ];
+  ]);
   let context = { list: list };
 
   return (
