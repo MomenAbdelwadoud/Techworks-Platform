@@ -12,6 +12,9 @@ const Card = ({data}) => {
     const closeCardWindow = () => {
         setOpen(false);
     };
+    const handleOpen = () =>{
+        setOpen(true)
+    }
 
     let card_data ={
         name: data.name,

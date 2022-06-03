@@ -7,9 +7,7 @@ import AvatarImage from './AvatarImage';
 import styles from '../styles/Profile.module.css'
 
 export default function Profile({data}) {
-    
-  
-  return (
+    return (
     <Box className={styles.modal} >
         <AvatarImage className={styles.avatar}></AvatarImage>
         <Typography fontFamily='roboto' component='h3' color='primary' variant={'body1'} letterSpacing={1.2}>{data.name.toUpperCase()}</Typography>
