@@ -2,6 +2,8 @@ import React from "react";
 import Card from "../components/Card";
 import Title from "../components/Title";
 import { ParticipantsContext } from "../context/ParticipantsContext";
+import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
 
 import Grid from "@mui/material/Grid";
 
@@ -10,14 +12,13 @@ export default function CardPage() {
   const card_list = participants.list;
   return (
     <div className="main">
+      <NavBar /> <SideBar />
       <Title title="All Participants" caption="Welcome back :)"></Title>
       <Grid container spacing={5} style={{ marginTop: "5px" }}>
         {card_list.map((card) => {
           return (
             <Grid item xs={4}>
-              <Card
-                data={card}
-              ></Card>
+              <Card data={card}></Card>
             </Grid>
           );
         })}

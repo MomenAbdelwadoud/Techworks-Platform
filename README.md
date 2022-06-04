@@ -14,7 +14,6 @@
 
 5. Better attendance-taking experience using unique QRcodes for all participants.
 
-6. Upload your code files for assignments and mentors will access it from one place.
 
 ## Future features
 
@@ -24,7 +23,7 @@
 
 3. Hosting on Savannah domain.
 
-4. Automated review of assignments code.
+4. Submission system and automated review of assignments code.
 
 5. Better Mobile phones responsiveness.
 

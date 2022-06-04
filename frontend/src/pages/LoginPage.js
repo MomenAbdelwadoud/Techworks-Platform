@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -13,17 +14,21 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    let signin_data = {
-      email: data.get("email"),
-      password: data.get("password"),
-    };
-    console.log(signin_data);
-    navigate("/participants", { replace: false });
+  const { login } = useContext(UserContext);
+  const onLogin = (e) => {
+    login(e);
   };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   let signin_data = {
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   };
+  //   console.log(signin_data);
+  //   navigate("/participants", { replace: false });
+  // };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -40,15 +45,15 @@ export default function LoginPage() {
           alt="Techworks Logo"
           className={styles.logo}
         />
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={onLogin} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="User Name"
+            name="username"
+            autoComplete="username"
             autoFocus
           />
           <TextField
@@ -61,10 +66,10 @@ export default function LoginPage() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label={<Typography color="secondary.">Remember me</Typography>}
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth

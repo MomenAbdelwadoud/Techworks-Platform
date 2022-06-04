@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import AvatarImage from './AvatarImage';
@@ -13,8 +13,8 @@ export default function Profile({data}) {
         <Typography fontFamily='roboto' component='h3' color='primary' variant={'body1'} letterSpacing={1.2}>{data.name.toUpperCase()}</Typography>
         <Typography fontFamily='roboto' component='p' variant='caption' color='secondary.light'>Group {data.group}</Typography>
         <hr width='30%' style={{color:'#ffffff'}}/>
-        {Object.keys(data).map((key)=>{
-                return (<div className={styles.card_details}>
+        {Object.keys(data).slice(2).map((key)=>{
+                return (<div className={styles.profile_details}>
                 <Typography fontFamily='roboto' component='p' variant='caption' color='secondary'>{key}</Typography>
                 <Typography fontFamily='roboto' component='p' variant='caption' fontWeight={'bold'} color='secondary'>{data[key]}</Typography>
                     </div>

@@ -1,12 +1,12 @@
 # from .models import Techworks ,Schedule,Attendance,Emails,Participants,Students,Mentors
 # from .serializers import TechworksSerializer,LoginSerializer ,ScheduleSerializer,UserSerializer,AttendanceSerializer,EmailsSerializer,ParticipantsSerializer,StudentsSerializer,MentorsSerializer
-from .models import Schedule,Category
-from .serializers import  UserSerializer,ScheduleSerializer, CategoryListSerializer,CategorySerializer,ScheduleTabelSerializer,MyTokenObtainPairSerializer ,UsersListSerializer
+from .models import Schedule, Category
+from .serializers import UserSerializer, ScheduleSerializer, CategoryListSerializer, CategorySerializer, ScheduleTabelSerializer, MyTokenObtainPairSerializer, UsersListSerializer
 from django.contrib.auth.models import User
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import generics ,viewsets,status
+from rest_framework import generics, viewsets, status
 
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -15,6 +15,7 @@ class UserCreate(APIView):
     """ 
     Creates the user. 
     """
+
     def post(self, request, format='json'):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -38,14 +39,13 @@ class UserView(generics.ListCreateAPIView):
 
 
 class CreateCategory(APIView):
-     def post(self, request, format='json'):
+    def post(self, request, format='json'):
         serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             category = serializer.save()
             if category:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-   
 
 
 class CategoryView(generics.ListCreateAPIView):
@@ -61,7 +61,7 @@ class CreateSchedule(APIView):
             if schedule:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-   
+
 
 class ScheduleView(generics.ListCreateAPIView):
     serializer_class = ScheduleTabelSerializer
@@ -87,6 +87,3 @@ class ScheduleView(generics.ListCreateAPIView):
 # class MentorsView(viewsets.ModelViewSet):
 #     serializer_class = MentorsSerializer
 #     queryset = Mentors.objects.all()
-
-
-

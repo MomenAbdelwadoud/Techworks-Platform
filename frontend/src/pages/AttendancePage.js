@@ -14,13 +14,110 @@ import Alert from "@mui/material/Alert";
 import styles from "../styles/AttendancePage.module.css";
 import Qrcode from "../components/Qrcode";
 
+import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
+
 export default function AttendancePage() {
   const [showAll, setShowAll] = useState(false);
   const [open, setOpen] = useState(false);
   const [resultAlert, setResultAlert] = useState(false);
   const [id, setId] = useState("");
   const [idField, setIdField] = useState("");
+  const [attendance, setAttendance] = useState([
+    {
+      lecture1: "",
+      lecture2: "",
+      lecture3: "",
+      lecture4: "",
+      lecture5: "",
+      lecture6: "",
+      lecture7: "",
+      lecture8: "",
+      lecture9: "",
+      lecture10: "",
+    },
+    {
+      lecture1: "",
+      lecture2: "",
+      lecture3: "",
+      lecture4: "",
+      lecture5: "",
+      lecture6: "",
+      lecture7: "",
+      lecture8: "",
+      lecture9: "",
+      lecture10: "",
+    },
+    {
+      lecture1: "",
+      lecture2: "",
+      lecture3: "",
+      lecture4: "",
+      lecture5: "",
+      lecture6: "",
+      lecture7: "",
+      lecture8: "",
+      lecture9: "",
+      lecture10: "",
+    },
+    {
+      lecture1: "",
+      lecture2: "",
+      lecture3: "",
+      lecture4: "",
+      lecture5: "",
+      lecture6: "",
+      lecture7: "",
+      lecture8: "",
+      lecture9: "",
+      lecture10: "",
+    },
+    {
+      lecture1: "",
+      lecture2: "",
+      lecture3: "",
+      lecture4: "",
+      lecture5: "",
+      lecture6: "",
+      lecture7: "",
+      lecture8: "",
+      lecture9: "",
+      lecture10: "",
+    },
+  ]);
 
+  const participants = [
+    { id: 1, name: "Momen", ...attendance[0] },
+    { id: 2, name: "Hamdi", ...attendance[1] },
+    { id: 3, name: "Nihal", ...attendance[2] },
+    { id: 4, name: "Setay", ...attendance[3] },
+    { id: 5, name: "Sara", ...attendance[4] },
+  ];
+  const columns = [
+    { field: "name", headerName: "Name", width: 150 },
+    { field: "lecture1", headerName: "Lecture 1", width: 140 },
+    { field: "lecture2", headerName: "Lecture 2", width: 140 },
+    { field: "lecture3", headerName: "Lecture 3", width: 140 },
+    { field: "lecture4", headerName: "Lecture 4", width: 140 },
+    { field: "lecture5", headerName: "Lecture 5", width: 140 },
+    { field: "lecture6", headerName: "Lecture 6", width: 140 },
+    { field: "lecture7", headerName: "Lecture 7", width: 140 },
+    { field: "lecture8", headerName: "Lecture 8", width: 140 },
+    { field: "lecture9", headerName: "Lecture 9", width: 140 },
+    { field: "lecture10", headerName: "Presentation", width: 140 },
+  ];
+  const dates = {
+    lecture1: "5/22/2022",
+    lecture2: "5/22/2022",
+    lecture3: "5/22/2022",
+    lecture4: "5/22/2022",
+    lecture5: "5/22/2022",
+    lecture6: "5/22/2022",
+    lecture7: "5/22/2022",
+    lecture8: "5/22/2022",
+    lecture9: "6/4/2022",
+    lecture10: "6/5/2022",
+  };
   const showResult = (result) => {
     add(result);
     setResultAlert(true);
@@ -34,13 +131,35 @@ export default function AttendancePage() {
   };
   const add = (id) => {
     setId(id);
+    let time = new Date().toLocaleTimeString();
+    let date = new Date().toLocaleDateString();
+    // console.log(time);
+    // console.log(date);
+    participants.forEach((participant) => {
+      if (participant.id == id) {
+        console.log(id);
+        Object.keys(dates).forEach((key) => {
+          if (dates[key] == date) {
+            console.log(dates[key], date);
+            setAttendance((attendance) => [
+              ...attendance.slice(0, id - 1),
+              {
+                ...attendance[id],
+                [key]: time,
+              },
+              ...attendance.slice(id),
+            ]);
+          }
+        });
+      }
+    });
   };
   const openAddWindow = () => {
     setOpen(true);
   };
   const closeAddWindow = () => {
     setOpen(false);
-    window.location.reload();
+    // window.location.reload();
   };
   const handleChange = (event) => {
     setShowAll(event.target.checked);
@@ -49,44 +168,10 @@ export default function AttendancePage() {
   // TODO: Apply colors to the rows
   // const attended = <span className={styles.yes}></span>;
   // const didnt_attend = <span className={styles.no}></span>;
-  const participants = [
-    { id: 1, name: "Momen", col1: "Yes", col2: "No" },
-    { id: 2, name: "Hamdi" },
-    { id: 3, name: "Nihal" },
-    { id: 4, name: "Setay" },
-    { id: 5, name: "Sara" },
-  ];
-  const columns = [
-    { field: "name", headerName: "Name", width: 150 },
-    { field: "col1", headerName: "Column 1", width: 140 },
-    { field: "col2", headerName: "Column 2", width: 140 },
-    { field: "col3", headerName: "Column 3", width: 140 },
-    { field: "col4", headerName: "Column 4", width: 140 },
-    { field: "col5", headerName: "Column 5", width: 140 },
-    { field: "col6", headerName: "Column 6", width: 140 },
-    { field: "col7", headerName: "Column 7", width: 140 },
-    { field: "col8", headerName: "Column 8", width: 140 },
-    { field: "col9", headerName: "Column 9", width: 140 },
-    { field: "col10", headerName: "Column 10", width: 140 },
-    { field: "col11", headerName: "Column 11", width: 140 },
-    { field: "col12", headerName: "Column 12", width: 140 },
-    { field: "col13", headerName: "Column 13", width: 140 },
-    { field: "col14", headerName: "Column 14", width: 140 },
-    { field: "col15", headerName: "Column 15", width: 140 },
-    { field: "col16", headerName: "Column 16", width: 140 },
-    { field: "col17", headerName: "Column 17", width: 140 },
-    { field: "col18", headerName: "Column 18", width: 140 },
-    { field: "col19", headerName: "Column 19", width: 140 },
-    { field: "col20", headerName: "Column 20", width: 140 },
-    { field: "col21", headerName: "Column 21", width: 140 },
-    { field: "col22", headerName: "Column 22", width: 140 },
-    { field: "col23", headerName: "Column 23", width: 140 },
-    { field: "col24", headerName: "Column 24", width: 140 },
-    { field: "col25", headerName: "Column 25", width: 140 },
-  ];
 
   return (
     <div className="main">
+      <NavBar /> <SideBar />
       <div
         style={{
           display: "flex",

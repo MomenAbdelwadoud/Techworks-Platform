@@ -7,6 +7,8 @@ import Modal from "@mui/material/Modal";
 import styles from "../styles/SchedulePage.module.css";
 import Lecture from "../components/Lecture";
 import { ScheduleContext } from "../context/ScheduleContext";
+import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
 
 export default function SchedulePage() {
   const [selection, setSelection] = useState("");
@@ -15,10 +17,10 @@ export default function SchedulePage() {
   let rows = schedule_context.list;
 
   const columns = [
-    { field: "name", headerName: "Name", width: 400 },
-    { field: "time", headerName: "Date", width: 300 },
-    { field: "category", headerName: "Category", width: 300 },
-    { field: "task", headerName: "Task", width: 300 },
+    { field: "name", headerName: "Name", width: 300 },
+    { field: "time", headerName: "Date", width: 200 },
+    { field: "category", headerName: "Category", width: 200 },
+    { field: "task", headerName: "Task", width: 200 },
   ];
 
   const closeAddWindow = () => {
@@ -28,6 +30,7 @@ export default function SchedulePage() {
   return (
     <>
       <main className="main">
+        <NavBar /> <SideBar />
         {/* TODO: Add button */}
         <Title title="Schedule" caption="Hello Momen"></Title>
         <div className={styles.table_container}>

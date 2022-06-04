@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 // import MenuItem from "@mui/material/MenuItem";
 // import InputLabel from "@mui/material/InputLabel";
 
+import { UserContext } from "../context/UserContext";
 import styles from "../styles/SignupPage.module.css";
 
 export default function SignupPage() {
@@ -18,9 +19,11 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // const [role, setRole] = useState("");
+  const { signup } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    signup(event);
     let signup_data = { firstName, lastName, email, password };
     setFirstName("");
     setLastName("");
@@ -67,6 +70,18 @@ export default function SignupPage() {
                 autoFocus
                 onChange={(event) => setLastName(event.target.value)}
               ></TextField>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="User Name"
+                name="username"
+                autoComplete="username"
+                autoFocus
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
