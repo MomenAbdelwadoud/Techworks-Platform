@@ -13,14 +13,19 @@ import InputLabel from "@mui/material/InputLabel";
 import styles from "../styles/SignupPage.module.css";
 
 export default function SignupPage() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let signup_data = { name, email, password, role };
+    let signup_data = { firstName, lastName, email, password };
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword("");
     console.log(signup_data);
   };
 
@@ -41,17 +46,27 @@ export default function SignupPage() {
         />
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
-                autoComplete="full-name"
-                name="fullName"
+                autoComplete="first-name"
+                name="firstName"
                 required
-                fullWidth
-                id="fullName"
-                label="Full Name"
+                id="firstName"
+                label="First Name"
                 autoFocus
-                onChange={(event) => setName(event.target.value)}
+                onChange={(event) => setFirstName(event.target.value)}
               />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                autoComplete="last-name"
+                name="lastName"
+                required
+                id="lastName"
+                label="Last Name"
+                autoFocus
+                onChange={(event) => setLastName(event.target.value)}
+              ></TextField>
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -76,7 +91,7 @@ export default function SignupPage() {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <InputLabel id="role-label">Role</InputLabel>
               <Select
                 required
@@ -93,9 +108,14 @@ export default function SignupPage() {
                 <MenuItem value={"data"}>Data Analytics Trainer</MenuItem>
               </Select>
             </Grid>
-            <Grid item xs={12}></Grid>
+            <Grid item xs={12}></Grid>*/}
           </Grid>
-          <Button type="submit" fullWidth variant="contained" sx={{ mb: 2 }}>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mb: 2, mt: 3 }}
+          >
             Sign Up
           </Button>
           <Grid container justifyContent="flex-end">

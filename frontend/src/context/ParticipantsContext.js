@@ -7,6 +7,9 @@ export default function ParticipantsContextWrapper(props) {
     {
       name: "Momen Abdelwadoud",
       group: "C",
+      phone: "0912345678",
+      batch: 1,
+      status: "student",
       email: "momenwadoudg@gmail.com",
       overall_score: 100,
       attendance_percentage: 86,
@@ -14,6 +17,9 @@ export default function ParticipantsContextWrapper(props) {
     {
       name: "Momen Abdelwadoud",
       group: "C",
+      phone: "0912345678",
+      batch: 1,
+      status: "student",
       email: "momenwadoudg@gmail.com",
       overall_score: 100,
       attendance_percentage: 86,
@@ -21,6 +27,9 @@ export default function ParticipantsContextWrapper(props) {
     {
       name: "Momen Abdelwadoud",
       group: "C",
+      phone: "0912345678",
+      batch: 1,
+      status: "student",
       email: "momenwadoudg@gmail.com",
       overall_score: 100,
       attendance_percentage: 86,
@@ -28,6 +37,9 @@ export default function ParticipantsContextWrapper(props) {
     {
       name: "Momen Abdelwadoud",
       group: "C",
+      phone: "0912345678",
+      batch: 1,
+      status: "student",
       email: "momenwadoudg@gmail.com",
       overall_score: 100,
       attendance_percentage: 86,

@@ -12,10 +12,12 @@ export default function CardPage() {
     <div className="main">
       <Title title="All Participants" caption="Welcome back :)"></Title>
       <Grid container spacing={5} style={{ marginTop: "5px" }}>
-        {card_list.slice(3).map((card) => {
+        {card_list.map((card) => {
           return (
-            <Grid item xs={3}>
-              <Card data={card}></Card>
+            <Grid item xs={4}>
+              <Card
+                data={card}
+              ></Card>
             </Grid>
           );
         })}
