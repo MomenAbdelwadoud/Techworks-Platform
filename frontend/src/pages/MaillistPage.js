@@ -23,8 +23,11 @@ export default function MaillistPage() {
     setRecipients(e.target.value);
   };
   // All emails
-  const students = ["momenwadoudg@gmail.com", ""];
-  const mentors = [""];
+  const students = [
+    "momenwadoudg@gmail.com",
+    "momen.abdalwadoud@withbloom.com",
+  ];
+  const mentors = ["momenwad00d13@gmail.com"];
   const all = students.concat(mentors);
 
   // show alert for 2 seconds
@@ -78,18 +81,18 @@ export default function MaillistPage() {
   return (
     <div
       className="main"
-      style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      style={{ display: "flex", flexDirection: "column", gap: "10px" }}
     >
       <Title
         title="Send Emails to users"
-        caption="Send to Participants, mentors or all"
+        caption="Send to Students, Mentors or all"
       ></Title>
       <Typography
         variant="body2"
         fontFamily={"roboto"}
         letterSpacing={1.2}
         color="secondary"
-        style={{ marginBottom: "5px" }}
+        // style={{ marginBottom: "5px" }}
       >
         Title:
       </Typography>
@@ -105,7 +108,7 @@ export default function MaillistPage() {
         fontFamily={"roboto"}
         letterSpacing={1.2}
         color="secondary"
-        style={{ marginBottom: "5px" }}
+        style={{ marginTop: "10px" }}
       >
         Body:
       </Typography>
