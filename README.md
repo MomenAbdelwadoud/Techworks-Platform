@@ -14,7 +14,6 @@
 
 5. Better attendance-taking experience using unique QRcodes for all participants.
 
-
 ## Future features
 
 1. Automated emails sent as a reminder for sessions/tasks.

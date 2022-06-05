@@ -1,8 +1,13 @@
-import React,{useState} from 'react'
+import React,{useEffect} from 'react'
 import { QrReader } from '@blackbox-vision/react-qr-reader';
 
-const Qrcode = ({open,showResult}) => {
+const Qrcode = ({showResult}) => {
   
+  useEffect(() => {
+    return () => {
+      console.log("cleaned up");
+    };
+  }, []);
   const onScan = (result,error) => {
     if (!!result) {
       console.log(result?.text)
@@ -15,15 +20,11 @@ const Qrcode = ({open,showResult}) => {
   }
 
   return (
-    <div> 
-      {open ? 
       <QrReader
       onResult={onScan}
       containerStyle={{ width: '350px',height: '350px' }}
-      /> : null}
-      
-        
-    </div>
+      constraints={{video: {facingMode: "environment"}}}
+      />
   );
 };
 export default Qrcode;

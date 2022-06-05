@@ -80,27 +80,27 @@ export default function MaillistPage() {
         ? mentors
         : "";
 
-    // emailjs
-    //   .send(
-    //     "service_4k60k4g",
-    //     "template_gc3qtua",
-    //     {
-    //       subject: title,
-    //       message: body,
-    //       to_emails: recipients_list,
-    //     },
-    //     "CAs9QHax00KzjGmSS"
-    //   )
-    //   .then(
-    //     (response) => {
-    //       console.log("SUCCESS!", response.status, response.text);
-    //       showOk();
-    //     },
-    //     (err) => {
-    //       console.log("FAILED...", err);
-    //       showError();
-    //     }
-    //   );
+    emailjs
+      .send(
+        "service_4k60k4g",
+        "template_gc3qtua",
+        {
+          subject: title,
+          message: body,
+          to_emails: recipients_list,
+        },
+        "CAs9QHax00KzjGmSS"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          showOk();
+        },
+        (err) => {
+          console.log("FAILED...", err);
+          showError();
+        }
+      );
     setTitle("");
     setBody("");
   };

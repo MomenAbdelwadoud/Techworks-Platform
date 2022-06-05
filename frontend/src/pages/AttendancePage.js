@@ -213,7 +213,7 @@ export default function AttendancePage() {
         >
           <Box className={styles.modal}>
             <Typography variant="h6">Scan QR Code</Typography>
-            <Qrcode open={open} showResult={showResult}></Qrcode>
+            <Qrcode showResult={showResult}></Qrcode>
             <div className={styles.manual}>
               <Typography variant="caption" color="secondary.light">
                 Or add manually by ID
